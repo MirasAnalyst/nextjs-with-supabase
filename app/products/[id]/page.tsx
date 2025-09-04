@@ -1,3 +1,5 @@
+"use client"
+
 import { notFound } from 'next/navigation'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
@@ -12,6 +14,7 @@ import {
   CheckCircle,
   Share2
 } from 'lucide-react'
+import BookPreviewButton from '@/components/book-preview-button'
 
 // Mock product data - in a real app, this would come from your database
 const products = {
@@ -41,6 +44,223 @@ const products = {
     category: "Bedtime",
     rating: 4.9,
     reviews: 50,
+    isNew: false,
+    isSale: true,
+    inStock: true,
+    shipping: "Free shipping on orders over $65"
+  },
+  2: {
+    id: 2,
+    title: "The Little Princess",
+    subtitle: "Personalized Fairy Tale",
+    price: 34.98,
+    originalPrice: 49.98,
+    description: "Transform your little girl into the star of her own royal adventure! 'The Little Princess' is a magical personalized fairy tale where your child becomes the brave princess who saves the kingdom. With enchanting illustrations and a heartwarming story, this book celebrates courage, kindness, and the power of believing in yourself.",
+    features: [
+      "Your child becomes the main character princess",
+      "Magical fairy tale with beautiful illustrations",
+      "Teaches important values like courage and kindness",
+      "Perfect for ages 3-7 years",
+      "28 pages of enchanting content",
+      "Premium hardcover with gold foil accents"
+    ],
+    specifications: {
+      pages: 28,
+      coverType: "Hardcover with gold foil",
+      dimensions: "11x8.5 inches",
+      ageRange: "3-7 years",
+      paperQuality: "Premium matte paper",
+      binding: "Perfect bound"
+    },
+    category: "Fairy Tale",
+    rating: 4.8,
+    reviews: 32,
+    isNew: true,
+    isSale: false,
+    inStock: true,
+    shipping: "Free shipping on orders over $65"
+  },
+  3: {
+    id: 3,
+    title: "Dinosaur Discovery",
+    subtitle: "Personalized Adventure Book",
+    price: 39.98,
+    originalPrice: 54.98,
+    description: "Journey back in time with your little paleontologist! 'Dinosaur Discovery' takes your child on an exciting prehistoric adventure where they become a brave dinosaur explorer. Meet friendly dinosaurs, discover fossils, and learn fascinating facts about these amazing creatures that once roamed the Earth.",
+    features: [
+      "Your child becomes a dinosaur explorer",
+      "Educational content about prehistoric life",
+      "Beautiful illustrations of various dinosaurs",
+      "32 pages of adventure and learning",
+      "Perfect for ages 2-6 years",
+      "Includes fun dinosaur facts"
+    ],
+    specifications: {
+      pages: 32,
+      coverType: "Hardcover",
+      dimensions: "11x8.5 inches",
+      ageRange: "2-6 years",
+      paperQuality: "100% digital recycled paper",
+      binding: "Perfect bound"
+    },
+    category: "Adventure",
+    rating: 4.7,
+    reviews: 28,
+    isNew: false,
+    isSale: true,
+    inStock: true,
+    shipping: "Free shipping on orders over $65"
+  },
+  4: {
+    id: 4,
+    title: "Space Explorer",
+    subtitle: "Personalized Sci-Fi Adventure",
+    price: 44.98,
+    originalPrice: 59.98,
+    description: "Blast off into space with your little astronaut! 'Space Explorer' takes your child on an incredible intergalactic journey where they become the captain of their own spaceship. Explore distant planets, meet friendly aliens, and discover the wonders of the universe in this exciting personalized adventure.",
+    features: [
+      "Your child becomes a space captain",
+      "Explore multiple planets and meet aliens",
+      "Educational space facts throughout",
+      "30 pages of cosmic adventure",
+      "Perfect for ages 3-8 years",
+      "Stunning space-themed illustrations"
+    ],
+    specifications: {
+      pages: 30,
+      coverType: "Hardcover",
+      dimensions: "11x8.5 inches",
+      ageRange: "3-8 years",
+      paperQuality: "Premium matte paper",
+      binding: "Perfect bound"
+    },
+    category: "Adventure",
+    rating: 4.9,
+    reviews: 45,
+    isNew: false,
+    isSale: false,
+    inStock: true,
+    shipping: "Free shipping on orders over $65"
+  },
+  5: {
+    id: 5,
+    title: "The Brave Knight",
+    subtitle: "Personalized Medieval Tale",
+    price: 37.98,
+    originalPrice: null,
+    description: "Your child becomes a courageous knight on a noble quest! 'The Brave Knight' transports your little hero to a magical medieval kingdom where they must rescue the princess and save the realm from dragons. This exciting tale teaches bravery, honor, and the importance of helping others.",
+    features: [
+      "Your child becomes a brave knight",
+      "Epic medieval adventure with dragons",
+      "Teaches values of courage and honor",
+      "26 pages of heroic content",
+      "Perfect for ages 3-7 years",
+      "Beautiful castle and dragon illustrations"
+    ],
+    specifications: {
+      pages: 26,
+      coverType: "Hardcover",
+      dimensions: "11x8.5 inches",
+      ageRange: "3-7 years",
+      paperQuality: "100% digital recycled paper",
+      binding: "Perfect bound"
+    },
+    category: "Adventure",
+    rating: 4.6,
+    reviews: 67,
+    isNew: true,
+    isSale: false,
+    inStock: true,
+    shipping: "Free shipping on orders over $65"
+  },
+  6: {
+    id: 6,
+    title: "Under the Sea",
+    subtitle: "Personalized Ocean Adventure",
+    price: 32.98,
+    originalPrice: 47.98,
+    description: "Dive deep into the ocean with your little mermaid or merman! 'Under the Sea' takes your child on an underwater adventure where they become a friendly sea creature exploring coral reefs, meeting ocean friends, and discovering the beauty of marine life. A perfect blend of adventure and education.",
+    features: [
+      "Your child becomes a sea creature",
+      "Explore coral reefs and ocean depths",
+      "Meet friendly marine animals",
+      "28 pages of underwater adventure",
+      "Perfect for ages 2-6 years",
+      "Educational ocean facts included"
+    ],
+    specifications: {
+      pages: 28,
+      coverType: "Hardcover",
+      dimensions: "11x8.5 inches",
+      ageRange: "2-6 years",
+      paperQuality: "100% digital recycled paper",
+      binding: "Perfect bound"
+    },
+    category: "Adventure",
+    rating: 4.8,
+    reviews: 41,
+    isNew: false,
+    isSale: true,
+    inStock: true,
+    shipping: "Free shipping on orders over $65"
+  },
+  7: {
+    id: 7,
+    title: "My First Day of School",
+    subtitle: "Personalized School Story",
+    price: 29.98,
+    originalPrice: null,
+    description: "Help your child prepare for their big day with 'My First Day of School'! This personalized story follows your little one through their first day at school, meeting new friends, learning exciting things, and discovering that school is a wonderful place to be. Perfect for easing first-day jitters.",
+    features: [
+      "Your child becomes the school star",
+      "Helps ease first-day anxiety",
+      "Positive school experience story",
+      "24 pages of encouraging content",
+      "Perfect for ages 3-6 years",
+      "Builds confidence for school"
+    ],
+    specifications: {
+      pages: 24,
+      coverType: "Hardcover",
+      dimensions: "11x8.5 inches",
+      ageRange: "3-6 years",
+      paperQuality: "100% digital recycled paper",
+      binding: "Perfect bound"
+    },
+    category: "Educational",
+    rating: 4.7,
+    reviews: 89,
+    isNew: true,
+    isSale: false,
+    inStock: true,
+    shipping: "Free shipping on orders over $65"
+  },
+  8: {
+    id: 8,
+    title: "Christmas Magic",
+    subtitle: "Personalized Holiday Book",
+    price: 39.98,
+    originalPrice: 54.98,
+    description: "Experience the magic of Christmas with your child as the star! 'Christmas Magic' takes your little one on a festive adventure where they help Santa deliver presents, meet reindeer, and spread holiday cheer throughout the world. A heartwarming tale that captures the true spirit of Christmas.",
+    features: [
+      "Your child helps Santa deliver presents",
+      "Magical Christmas adventure",
+      "Meet Santa's reindeer and elves",
+      "32 pages of holiday magic",
+      "Perfect for ages 2-8 years",
+      "Beautiful winter wonderland illustrations"
+    ],
+    specifications: {
+      pages: 32,
+      coverType: "Hardcover",
+      dimensions: "11x8.5 inches",
+      ageRange: "2-8 years",
+      paperQuality: "Premium matte paper",
+      binding: "Perfect bound"
+    },
+    category: "Holiday",
+    rating: 4.9,
+    reviews: 156,
     isNew: false,
     isSale: true,
     inStock: true,
@@ -146,8 +366,14 @@ export default function ProductPage({ params }: { params: { id: string } }) {
               </ul>
             </div>
 
-            {/* Add to Cart */}
+            {/* Preview & Add to Cart */}
             <div className="space-y-4">
+              <BookPreviewButton 
+                bookId={product.id.toString()} 
+                bookTitle={product.title}
+                variant="outline"
+                size="lg"
+              />
               <div className="flex gap-3">
                 <Button size="lg" className="flex-1 bg-blue-600 hover:bg-blue-700">
                   <ShoppingCart className="w-5 h-5 mr-2" />

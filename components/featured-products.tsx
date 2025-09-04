@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { BookOpen, Heart, Star, ShoppingCart } from 'lucide-react'
 import { useLanguage } from '@/lib/i18n/language-context'
+import BookPreviewButton from '@/components/book-preview-button'
 
 const featuredProducts = [
   {
@@ -23,12 +24,12 @@ const featuredProducts = [
   },
   {
     id: 2,
-    title: "First Birthday Adventure",
-    subtitle: "Personalized Birthday Book",
+    title: "The Little Princess",
+    subtitle: "Personalized Fairy Tale",
     price: 34.98,
     originalPrice: 49.98,
     image: "/api/placeholder/300/400",
-    category: "Birthday",
+    category: "Fairy Tale",
     rating: 4.8,
     reviews: 32,
     isNew: true,
@@ -36,7 +37,7 @@ const featuredProducts = [
   },
   {
     id: 3,
-    title: "Dinosaur Explorer",
+    title: "Dinosaur Discovery",
     subtitle: "Personalized Adventure Book",
     price: 39.98,
     originalPrice: 54.98,
@@ -49,16 +50,68 @@ const featuredProducts = [
   },
   {
     id: 4,
-    title: "Princess Dreams",
-    subtitle: "Personalized Fairy Tale",
+    title: "Space Explorer",
+    subtitle: "Personalized Sci-Fi Adventure",
     price: 44.98,
     originalPrice: 59.98,
     image: "/api/placeholder/300/400",
-    category: "Fairy Tale",
+    category: "Adventure",
     rating: 4.9,
     reviews: 45,
     isNew: false,
     isSale: false
+  },
+  {
+    id: 5,
+    title: "The Brave Knight",
+    subtitle: "Personalized Medieval Tale",
+    price: 37.98,
+    originalPrice: null,
+    image: "/api/placeholder/300/400",
+    category: "Adventure",
+    rating: 4.6,
+    reviews: 67,
+    isNew: true,
+    isSale: false
+  },
+  {
+    id: 6,
+    title: "Under the Sea",
+    subtitle: "Personalized Ocean Adventure",
+    price: 32.98,
+    originalPrice: 47.98,
+    image: "/api/placeholder/300/400",
+    category: "Adventure",
+    rating: 4.8,
+    reviews: 41,
+    isNew: false,
+    isSale: true
+  },
+  {
+    id: 7,
+    title: "My First Day of School",
+    subtitle: "Personalized School Story",
+    price: 29.98,
+    originalPrice: null,
+    image: "/api/placeholder/300/400",
+    category: "Educational",
+    rating: 4.7,
+    reviews: 89,
+    isNew: true,
+    isSale: false
+  },
+  {
+    id: 8,
+    title: "Christmas Magic",
+    subtitle: "Personalized Holiday Book",
+    price: 39.98,
+    originalPrice: 54.98,
+    image: "/api/placeholder/300/400",
+    category: "Holiday",
+    rating: 4.9,
+    reviews: 156,
+    isNew: false,
+    isSale: true
   }
 ]
 
@@ -135,12 +188,20 @@ export function FeaturedProducts() {
                   )}
                 </div>
 
-                <Button className="w-full bg-blue-600 hover:bg-blue-700" asChild>
-                  <Link href={`/products/${product.id}`}>
-                    <ShoppingCart className="w-4 h-4 mr-2" />
-                    {t('featured.addToCart')}
-                  </Link>
-                </Button>
+                <div className="space-y-2">
+                  <BookPreviewButton 
+                    bookId={product.id.toString()} 
+                    bookTitle={product.title}
+                    variant="outline"
+                    size="sm"
+                  />
+                  <Button className="w-full bg-blue-600 hover:bg-blue-700" asChild>
+                    <Link href={`/products/${product.id}`}>
+                      <ShoppingCart className="w-4 h-4 mr-2" />
+                      {t('featured.addToCart')}
+                    </Link>
+                  </Button>
+                </div>
               </CardContent>
             </Card>
           ))}

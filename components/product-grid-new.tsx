@@ -6,7 +6,6 @@ import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { BookOpen, Heart, Star, ShoppingCart } from 'lucide-react'
 import { useLanguage } from '@/lib/i18n/language-context'
-import BookPreviewButton from '@/components/book-preview-button'
 
 const products = [
   {
@@ -289,12 +288,6 @@ export function ProductGrid() {
               </div>
 
               <div className="space-y-2">
-                <BookPreviewButton 
-                  bookId={product.id.toString()} 
-                  bookTitle={product.title}
-                  variant="outline"
-                  size="sm"
-                />
                 <Button className="w-full bg-blue-600 hover:bg-blue-700" asChild>
                   <Link href={`/products/${product.id}`}>
                     <ShoppingCart className="w-4 h-4 mr-2" />
