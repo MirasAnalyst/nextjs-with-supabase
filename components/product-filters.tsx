@@ -6,7 +6,7 @@ import { Checkbox } from '@/components/ui/checkbox'
 import { Label } from '@/components/ui/label'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
-import { ChevronDown, ChevronUp, Filter, X } from 'lucide-react'
+import { ChevronDown, ChevronUp, X } from 'lucide-react'
 import { useLanguage } from '@/lib/i18n/language-context'
 
 const categories = [
@@ -53,7 +53,12 @@ export function ProductFilters() {
     coverTypes: true
   })
 
-  const [selectedFilters, setSelectedFilters] = useState({
+  const [selectedFilters, setSelectedFilters] = useState<{
+    categories: string[]
+    ageRanges: string[]
+    priceRanges: string[]
+    coverTypes: string[]
+  }>({
     categories: [],
     ageRanges: [],
     priceRanges: [],

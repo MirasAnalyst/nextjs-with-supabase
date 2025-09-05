@@ -1,5 +1,5 @@
 // Personalization Service for Real-time Book Preview
-import { PersonalizationPayload, PreviewResponse, PreviewPage } from '@/lib/types/ecommerce'
+import { PersonalizationPayload, PreviewResponse } from '@/lib/types/ecommerce'
 import { useState } from 'react'
 
 export class PersonalizationService {

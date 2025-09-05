@@ -52,7 +52,7 @@ export function Hero() {
             <div className="bg-white rounded-2xl shadow-2xl p-8 transform rotate-3 hover:rotate-0 transition-transform duration-300">
               <div className="bg-gradient-to-br from-blue-400 to-purple-500 rounded-xl p-6 text-white text-center">
                 <BookOpen className="w-16 h-16 mx-auto mb-4" />
-                <h3 className="text-2xl font-bold mb-2">It's Bedtime</h3>
+                <h3 className="text-2xl font-bold mb-2">It&apos;s Bedtime</h3>
                 <p className="text-blue-100">Personalized Baby Book</p>
                 <div className="mt-4">
                   <span className="text-3xl font-bold">$29.98</span>

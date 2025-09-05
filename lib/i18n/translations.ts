@@ -459,17 +459,17 @@ export const defaultLanguage: Language = 'en'
 
 export function getTranslation(lang: Language, key: string): string {
   const keys = key.split('.')
-  let value: any = translations[lang]
+  let value: unknown = translations[lang]
   
   for (const k of keys) {
-    if (value && typeof value === 'object' && k in value) {
-      value = value[k]
+    if (value && typeof value === 'object' && value !== null && k in value) {
+      value = (value as Record<string, unknown>)[k]
     } else {
       // Fallback to English if translation not found
       value = translations.en
       for (const fallbackKey of keys) {
-        if (value && typeof value === 'object' && fallbackKey in value) {
-          value = value[fallbackKey]
+        if (value && typeof value === 'object' && value !== null && fallbackKey in value) {
+          value = (value as Record<string, unknown>)[fallbackKey]
         } else {
           return key // Return key if translation still not found
         }

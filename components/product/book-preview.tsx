@@ -15,7 +15,7 @@ import {
   BookOpen,
   Loader2
 } from 'lucide-react'
-import { PreviewResponse, PreviewPage } from '@/lib/types/ecommerce'
+import { PreviewResponse } from '@/lib/types/ecommerce'
 import { motion, AnimatePresence } from 'framer-motion'
 
 interface BookPreviewProps {

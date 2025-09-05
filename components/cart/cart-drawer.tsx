@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
-import { Card, CardContent } from '@/components/ui/card'
+import { Card } from '@/components/ui/card'
 import { 
   X, 
   Plus, 
@@ -202,17 +202,20 @@ export function CartDrawer() {
                 {/* Discounts */}
                 {discounts.length > 0 && (
                   <div className="space-y-2">
-                    {discounts.map((discount, index) => (
-                      <div key={index} className="flex items-center justify-between text-sm">
-                        <div className="flex items-center gap-2 text-green-600">
-                          <Gift className="w-4 h-4" />
-                          <span>{discount.description}</span>
+                    {discounts.map((discount, index) => {
+                      const discountObj = discount as { description: string; value: number }
+                      return (
+                        <div key={index} className="flex items-center justify-between text-sm">
+                          <div className="flex items-center gap-2 text-green-600">
+                            <Gift className="w-4 h-4" />
+                            <span>{discountObj.description}</span>
+                          </div>
+                          <span className="text-green-600 font-medium">
+                            -{cartUtils.formatPrice(discountObj.value)}
+                          </span>
                         </div>
-                        <span className="text-green-600 font-medium">
-                          -{cartUtils.formatPrice(discount.value)}
-                        </span>
-                      </div>
-                    ))}
+                      )
+                    })}
                   </div>
                 )}
 

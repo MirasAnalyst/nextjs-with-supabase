@@ -296,7 +296,7 @@ export interface PerformanceMetrics {
 
 export interface AnalyticsEvent {
   event: string
-  properties: Record<string, any>
+  properties: Record<string, unknown>
   timestamp: string
   userId?: string
   sessionId: string

@@ -1,7 +1,7 @@
 // Cart Store using Zustand for state management
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
-import { Cart, CartItem, PersonalizationPayload } from '@/lib/types/ecommerce'
+import { Cart, CartItem } from '@/lib/types/ecommerce'
 
 interface CartStore {
   // State
@@ -24,7 +24,7 @@ interface CartStore {
   getShipping: () => number
   getTotal: () => number
   getItemCount: () => number
-  getDiscounts: () => any[]
+  getDiscounts: () => unknown[]
 }
 
 export const useCartStore = create<CartStore>()(

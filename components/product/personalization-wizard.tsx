@@ -8,7 +8,6 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { Badge } from '@/components/ui/badge'
 import { Progress } from '@/components/ui/progress'
 import { 
   Palette, 
@@ -20,7 +19,7 @@ import {
   Loader2
 } from 'lucide-react'
 import { usePersonalization } from '@/lib/services/personalization'
-import { PersonalizationPayload, CoverColor } from '@/lib/types/ecommerce'
+import { PersonalizationPayload, CoverColor, PreviewResponse } from '@/lib/types/ecommerce'
 
 // Validation schema
 const personalizationSchema = z.object({
@@ -39,7 +38,7 @@ type PersonalizationForm = z.infer<typeof personalizationSchema>
 interface PersonalizationWizardProps {
   productId: string
   onPersonalizationChange: (payload: PersonalizationPayload) => void
-  onPreviewGenerated: (preview: any) => void
+  onPreviewGenerated: (preview: PreviewResponse) => void
 }
 
 const coverColors: { value: CoverColor; label: string; preview: string }[] = [
@@ -63,11 +62,9 @@ export function PersonalizationWizard({
   
   const { 
     register, 
-    handleSubmit, 
     watch, 
     setValue, 
-    formState: { errors, isValid },
-    trigger
+    formState: { errors }
   } = useForm<PersonalizationForm>({
     resolver: zodResolver(personalizationSchema),
     mode: 'onChange',
@@ -168,7 +165,7 @@ export function PersonalizationWizard({
           <div className="space-y-4">
             <div>
               <Label htmlFor="childName" className="text-lg font-medium">
-                What's your child's name?
+                What&apos;s your child&apos;s name?
               </Label>
               <p className="text-sm text-gray-600 mt-1">
                 This will appear on the cover and throughout the story
@@ -212,7 +209,7 @@ export function PersonalizationWizard({
                 Choose a cover color
               </Label>
               <p className="text-sm text-gray-600 mt-1">
-                Select the perfect color for your book's cover
+                Select the perfect color for your book&apos;s cover
               </p>
             </div>
 
@@ -245,7 +242,7 @@ export function PersonalizationWizard({
               
               <textarea
                 id="dedication"
-                placeholder="Dear [Child's Name], this book was made with love..."
+                placeholder="Dear [Child&apos;s Name], this book was made with love..."
                 {...register('dedication')}
                 className="w-full p-3 border border-gray-300 rounded-lg resize-none"
                 rows={3}
@@ -317,7 +314,7 @@ export function PersonalizationWizard({
             
             <div className="bg-gray-50 p-4 rounded-lg">
               <div className="text-sm text-gray-600 space-y-1">
-                <div><strong>Child's Name:</strong> {watchedValues.childName}</div>
+                <div><strong>Child&apos;s Name:</strong> {watchedValues.childName}</div>
                 <div><strong>Cover Color:</strong> {coverColors.find(c => c.value === watchedValues.coverColor)?.label}</div>
                 {watchedValues.dedication && (
                   <div><strong>Dedication:</strong> {watchedValues.dedication}</div>
