@@ -12,8 +12,6 @@ import {
   Heart, 
   Star, 
   Gift,
-  Baby,
-  Calendar,
   Egg,
   Trophy
 } from 'lucide-react'
@@ -145,7 +143,6 @@ const categories = [
 export default function CategoriesPage() {
   const { t } = useLanguage()
   const featuredCategories = categories.filter(cat => cat.featured)
-  const popularCategories = categories.filter(cat => cat.popular)
   const allCategories = categories
 
   return (

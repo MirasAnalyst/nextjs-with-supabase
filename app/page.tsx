@@ -1,4 +1,4 @@
-import { Suspense } from 'react'
+// import { Suspense } from 'react' // TODO: Add loading states
 import { Hero } from '@/components/hero'
 import { FeaturedProducts } from '@/components/featured-products'
 import { CategoryGrid } from '@/components/category-grid'

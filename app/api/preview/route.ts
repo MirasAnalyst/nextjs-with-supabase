@@ -338,7 +338,28 @@ export async function POST(request: NextRequest) {
   }
 }
 
-async function generatePreviewPages(template: any, payload: PersonalizationPayload) {
+interface BookTemplate {
+  id: string
+  title: string
+  pages: PageTemplate[]
+}
+
+interface PageTemplate {
+  pageNumber: number
+  type: string
+  content: {
+    title?: string
+    text: string
+    illustration: string
+  }
+}
+
+interface ColorScheme {
+  primary: string
+  background: string
+}
+
+async function generatePreviewPages(template: BookTemplate, payload: PersonalizationPayload) {
   const pages = []
   const colorScheme = colorSchemes[payload.coverColor]
   
@@ -356,8 +377,7 @@ async function generatePreviewPages(template: any, payload: PersonalizationPaylo
   return pages
 }
 
-async function generatePageImage(pageTemplate: any, payload: PersonalizationPayload, colorScheme: any) {
-  const pageType = pageTemplate.type
+async function generatePageImage(pageTemplate: PageTemplate, payload: PersonalizationPayload, colorScheme: ColorScheme) {
   const childName = payload.childName
   
   // Create page content based on the template
@@ -389,7 +409,7 @@ async function generatePageImage(pageTemplate: any, payload: PersonalizationPayl
   return `https://via.placeholder.com/1100x850/${colorHex}/${bgColorHex.substring(0, 6)}?text=Page+${pageTemplate.pageNumber}%0A${encodedText}`
 }
 
-async function generateThumbnailImage(pageTemplate: any, payload: PersonalizationPayload, colorScheme: any) {
+async function generateThumbnailImage(pageTemplate: PageTemplate, payload: PersonalizationPayload, colorScheme: ColorScheme) {
   const colorHex = colorScheme.primary.replace('#', '')
   const bgColorHex = colorScheme.background.replace('#', '')
   return `https://via.placeholder.com/150x200/${colorHex}/${bgColorHex.substring(0, 6)}?text=P${pageTemplate.pageNumber}`

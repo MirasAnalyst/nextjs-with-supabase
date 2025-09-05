@@ -6,7 +6,7 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog'
-import { PersonalizationPayload, PreviewResponse } from '@/lib/types/ecommerce'
+import { PersonalizationPayload } from '@/lib/types/ecommerce'
 import { usePersonalization } from '@/lib/services/personalization'
 import { useLanguage } from '@/lib/i18n/language-context'
 
@@ -34,7 +34,7 @@ export default function BookPreviewButton({
   size = 'md', 
   variant = 'default' 
 }: BookPreviewButtonProps) {
-  const { t } = useLanguage()
+  // const { t } = useLanguage() // TODO: Add translations
   const [isOpen, setIsOpen] = useState(false)
   const [childName, setChildName] = useState('')
   const [coverColor, setCoverColor] = useState('blue')
@@ -55,7 +55,7 @@ export default function BookPreviewButton({
 
     const payload: PersonalizationPayload = {
       childName: childName.trim(),
-      coverColor: coverColor as any,
+      coverColor: coverColor as 'blue' | 'pink' | 'purple' | 'green' | 'yellow' | 'red' | 'orange' | 'teal',
       dedication: dedication.trim(),
       locale: 'en-US',
       previewVersion: 'v1',
@@ -110,12 +110,12 @@ export default function BookPreviewButton({
               <CardContent className="space-y-4">
                 {/* Child Name */}
                 <div className="space-y-2">
-                  <Label htmlFor="childName">👶 Child's Name *</Label>
+                  <Label htmlFor="childName">👶 Child&apos;s Name *</Label>
                   <Input
                     id="childName"
                     value={childName}
                     onChange={(e) => setChildName(e.target.value)}
-                    placeholder="Enter child's name"
+                    placeholder="Enter child&apos;s name"
                     className="text-base"
                   />
                 </div>
@@ -250,7 +250,7 @@ export default function BookPreviewButton({
                       <strong>Ready to see the magic?</strong>
                     </div>
                     <div className="text-sm text-gray-400">
-                      Enter a child's name and generate your personalized preview
+                      Enter a child&apos;s name and generate your personalized preview
                     </div>
                   </div>
                 )}

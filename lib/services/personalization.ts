@@ -17,11 +17,9 @@ export class PersonalizationService {
    * Target: ≤3s LCP for preview generation
    */
   async generatePreview(payload: PersonalizationPayload): Promise<PreviewResponse> {
-    console.log('🔄 PersonalizationService.generatePreview called with:', payload)
     const startTime = Date.now()
     
     try {
-      console.log('📡 Making API request to /api/preview')
       const response = await fetch('/api/preview', {
         method: 'POST',
         headers: {
@@ -42,11 +40,8 @@ export class PersonalizationService {
       
       // Log performance metrics
       const duration = Date.now() - startTime
-      console.log(`✅ Preview generated in ${duration}ms`)
-      console.log('📄 Preview data:', data)
-      
       if (duration > 3000) {
-        console.warn(`⚠️ Preview generation exceeded 3s target: ${duration}ms`)
+        console.warn(`Preview generation exceeded 3s target: ${duration}ms`)
       }
 
       return data
@@ -148,20 +143,16 @@ export function usePersonalization() {
   const [preview, setPreview] = useState<PreviewResponse | null>(null)
   const [error, setError] = useState<string | null>(null)
 
-  console.log('🔧 usePersonalization hook state:', { isGenerating, preview: !!preview, error })
-
   const generatePreview = async (payload: PersonalizationPayload) => {
-    console.log('🎯 usePersonalization.generatePreview called')
     setIsGenerating(true)
     setError(null)
     
     try {
       const result = await personalizationService.generatePreview(payload)
-      console.log('📖 Setting preview state:', result)
       setPreview(result)
       return result
     } catch (err) {
-      console.error('💥 Hook error:', err)
+      console.error('Preview generation error:', err)
       setError(err instanceof Error ? err.message : 'Preview generation failed')
       throw err
     } finally {

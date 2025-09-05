@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { PersonalizationPayload, PreviewResponse } from '@/lib/types/ecommerce'
+import { PersonalizationPayload } from '@/lib/types/ecommerce'
 import { usePersonalization } from '@/lib/services/personalization'
 
 const bookOptions = [
@@ -40,7 +40,7 @@ export default function TestPreviewPage() {
     
     const payload: PersonalizationPayload = {
       childName,
-      coverColor: coverColor as any,
+      coverColor: coverColor as 'blue' | 'pink' | 'purple' | 'green' | 'yellow' | 'red' | 'orange' | 'teal',
       dedication,
       locale: 'en-US',
       previewVersion: 'v1',
@@ -99,12 +99,12 @@ export default function TestPreviewPage() {
 
               {/* Child Name */}
               <div className="space-y-2">
-                <Label htmlFor="childName" className="text-lg font-medium">👶 Child's Name</Label>
+                <Label htmlFor="childName" className="text-lg font-medium">👶 Child&apos;s Name</Label>
                 <Input
                   id="childName"
                   value={childName}
                   onChange={(e) => setChildName(e.target.value)}
-                  placeholder="Enter child's name"
+                  placeholder="Enter child&apos;s name"
                   className="text-lg"
                 />
               </div>
