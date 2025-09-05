@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { notFound } from 'next/navigation'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
@@ -8,15 +8,12 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { 
   BookOpen, 
-  Heart, 
   Star, 
   ShoppingCart, 
   Truck, 
   Shield, 
-  CheckCircle,
   Share2,
-  Zoom,
-  Play,
+  Search,
   Users,
   Award,
   Clock,
@@ -25,7 +22,6 @@ import {
 import { PersonalizationWizard } from '@/components/product/personalization-wizard'
 import { BookPreview } from '@/components/product/book-preview'
 import { Product, PersonalizationPayload, PreviewResponse } from '@/lib/types/ecommerce'
-import { usePersonalization } from '@/lib/services/personalization'
 
 // Enhanced product data with all required fields
 const products: Record<string, Product> = {
@@ -270,13 +266,13 @@ export default function ProductPage({ params }: { params: { id: string } }) {
                 size="sm"
                 className="absolute top-4 right-4 bg-white/80 hover:bg-white"
               >
-                <Zoom className="w-4 h-4" />
+                <Search className="w-4 h-4" />
               </Button>
             </div>
 
             {/* Thumbnail Gallery */}
             <div className="flex gap-2">
-              {product.gallery.map((media, index) => (
+              {product.gallery.map((media) => (
                 <div
                   key={media.id}
                   className="w-20 h-20 bg-gradient-to-br from-blue-100 to-purple-100 rounded-lg flex items-center justify-center cursor-pointer hover:opacity-80 border-2 border-transparent hover:border-blue-300"

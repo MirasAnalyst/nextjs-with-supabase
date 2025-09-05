@@ -4,6 +4,7 @@ import { PersonalizationPayload } from '@/lib/types/ecommerce'
 // Book templates with 5 pages max for easier preview
 const bookTemplates = {
   '1': {
+    id: '1',
     title: "It's Bedtime",
     subtitle: "A Soothing Bedtime Story",
     pages: [
@@ -60,6 +61,7 @@ const bookTemplates = {
     ]
   },
   '2': {
+    id: '2',
     title: "Little Princess Adventure",
     subtitle: "A Royal Tale",
     pages: [
@@ -116,6 +118,7 @@ const bookTemplates = {
     ]
   },
   '3': {
+    id: '3',
     title: "Dinosaur Explorer",
     subtitle: "A Prehistoric Adventure",
     pages: [
@@ -172,6 +175,7 @@ const bookTemplates = {
     ]
   },
   '4': {
+    id: '4',
     title: "Space Adventure",
     subtitle: "A Cosmic Journey",
     pages: [
@@ -228,6 +232,7 @@ const bookTemplates = {
     ]
   },
   '5': {
+    id: '5',
     title: "Ocean Adventure",
     subtitle: "Under the Sea",
     pages: [
@@ -349,7 +354,10 @@ interface PageTemplate {
   type: string
   content: {
     title?: string
-    text: string
+    subtitle?: string
+    text?: string
+    text2?: string
+    childName?: boolean
     illustration: string
   }
 }
@@ -402,7 +410,9 @@ async function generatePageImage(pageTemplate: PageTemplate, payload: Personaliz
   }
   
   // Generate URL with improved text and styling
-  const encodedText = encodeURIComponent(pageText.substring(0, 80))
+  // Sanitize and limit text to prevent URI encoding issues
+  const safeText = (pageText || '').substring(0, 50).replace(/[^\w\s\-.,!?]/g, '').trim()
+  const encodedText = safeText ? encodeURIComponent(safeText) : 'Sample+Text'
   const colorHex = colorScheme.primary.replace('#', '')
   const bgColorHex = colorScheme.background.replace('#', '')
   

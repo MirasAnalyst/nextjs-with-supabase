@@ -1,5 +1,6 @@
 "use client"
 
+import { use } from 'react'
 import { notFound } from 'next/navigation'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
@@ -268,8 +269,9 @@ const products = {
   }
 }
 
-export default function ProductPage({ params }: { params: { id: string } }) {
-  const product = products[params.id as keyof typeof products]
+export default function ProductPage({ params }: { params: Promise<{ id: string }> }) {
+  const resolvedParams = use(params)
+  const product = products[resolvedParams.id as unknown as keyof typeof products]
 
   if (!product) {
     notFound()
@@ -336,14 +338,14 @@ export default function ProductPage({ params }: { params: { id: string } }) {
               <span className="text-4xl font-bold text-gray-900">
                 ${product.price}
               </span>
-              {product.originalPrice > product.price && (
+              {product.originalPrice && product.originalPrice > product.price && (
                 <span className="text-2xl text-gray-500 line-through">
                   ${product.originalPrice}
                 </span>
               )}
               {product.isSale && (
                 <Badge className="bg-red-500 hover:bg-red-600 text-lg px-3 py-1">
-                  Save ${(product.originalPrice - product.price).toFixed(2)}
+                  Save ${product.originalPrice ? (product.originalPrice - product.price).toFixed(2) : '0.00'}
                 </Badge>
               )}
             </div>

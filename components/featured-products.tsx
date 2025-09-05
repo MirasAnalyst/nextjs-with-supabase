@@ -181,7 +181,7 @@ export function FeaturedProducts() {
                   <span className="text-2xl font-bold text-gray-900">
                     ${product.price}
                   </span>
-                  {product.originalPrice > product.price && (
+                  {product.originalPrice && product.originalPrice > product.price && (
                     <span className="text-lg text-gray-500 line-through">
                       ${product.originalPrice}
                     </span>

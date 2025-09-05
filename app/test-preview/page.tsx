@@ -64,7 +64,7 @@ export default function TestPreviewPage() {
       <div className="container mx-auto px-4 max-w-6xl">
         <div className="mb-8 text-center">
           <h1 className="text-4xl font-bold text-gray-900 mb-2">📚 Book Preview System</h1>
-          <p className="text-xl text-gray-600">Test personalized children's books with 5 pages each</p>
+          <p className="text-xl text-gray-600">Test personalized children&apos;s books with 5 pages each</p>
         </div>
 
         <div className="grid lg:grid-cols-2 gap-8">
@@ -236,7 +236,7 @@ export default function TestPreviewPage() {
                     <strong>Ready to create magic?</strong>
                   </div>
                   <div className="text-sm text-gray-400">
-                    Select a book, enter a child's name, and generate your preview
+                    Select a book, enter a child&apos;s name, and generate your preview
                   </div>
                 </div>
               )}

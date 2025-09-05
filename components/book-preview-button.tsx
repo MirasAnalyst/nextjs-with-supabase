@@ -8,7 +8,6 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog'
 import { PersonalizationPayload } from '@/lib/types/ecommerce'
 import { usePersonalization } from '@/lib/services/personalization'
-import { useLanguage } from '@/lib/i18n/language-context'
 
 interface BookPreviewButtonProps {
   bookId: string
@@ -34,7 +33,6 @@ export default function BookPreviewButton({
   size = 'md', 
   variant = 'default' 
 }: BookPreviewButtonProps) {
-  // const { t } = useLanguage() // TODO: Add translations
   const [isOpen, setIsOpen] = useState(false)
   const [childName, setChildName] = useState('')
   const [coverColor, setCoverColor] = useState('blue')
